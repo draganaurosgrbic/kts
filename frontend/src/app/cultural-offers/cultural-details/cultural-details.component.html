@@ -1,0 +1,44 @@
+<div class="root-container mat-elevation-z24" 
+(click)="culturalService.announceMarkOnMap(culturalOffer)">
+    <mat-card>
+        <mat-card-content>
+
+            <div class="item-container">
+                <div class="image-container">
+                    <img 
+                    [src]="culturalOffer.image || '../../../assets/noimage.png'">
+                </div>
+    
+                <div class="details-container">
+                    <div>
+                        <app-bold-text>{{culturalOffer.name}}</app-bold-text>
+                    </div>
+                    <br>
+                    <div>
+                        <app-bold-text>Type: </app-bold-text><span>{{culturalOffer.type + ', ' + culturalOffer.category}}</span>
+                    </div>
+                    <div>
+                        <app-bold-text>Location: </app-bold-text><span>{{culturalOffer.location}}</span>
+                    </div>
+                    <div *ngIf="culturalOffer.description">
+                        <app-bold-text>Description: </app-bold-text><span>{{culturalOffer.description}}</span>
+                    </div>
+                    <div>
+                        <app-bold-text>Total rate: </app-bold-text><span>{{ culturalOffer.totalRate | number:'1.2-2' }}/5</span>
+                    </div>
+                </div>
+
+                <div>
+                    <button 
+                    mat-icon-button 
+                    color="accent"
+                    (click)="showDetails()">
+                        <mat-icon>edit</mat-icon>
+                    </button>        
+                </div>
+
+            </div>
+            
+        </mat-card-content>
+    </mat-card>
+</div>

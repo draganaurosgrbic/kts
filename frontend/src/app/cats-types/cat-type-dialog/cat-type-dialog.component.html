@@ -1,0 +1,13 @@
+<app-close-button 
+(closed)="dialogRef.close()"
+></app-close-button>
+
+<mat-tab-group animationDuration="0ms" cdkFocusInitial>
+    <mat-tab [label]="cats ? 'Categories list' : 'Types list'">
+        <app-cat-type-list [cats]="cats"></app-cat-type-list>
+    </mat-tab>
+    <mat-tab [label]="cats ? 'New Category' : 'New Type'">
+        <app-cat-form *ngIf="cats"></app-cat-form>
+        <app-type-form *ngIf="!cats"></app-type-form>
+    </mat-tab>
+</mat-tab-group>

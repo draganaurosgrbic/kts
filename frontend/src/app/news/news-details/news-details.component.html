@@ -1,0 +1,40 @@
+<div class="root-container mat-elevation-z24">
+    <mat-card>
+        <mat-card-content>
+
+            <div>
+                <app-bold-text>Details: </app-bold-text>
+            </div>
+            <div class="text-container">
+                {{news.text}}
+            </div>
+            <div>
+                <app-bold-text>Published On: </app-bold-text>{{news.createdAt | date: "dd MMM yyyy"}}
+            </div>
+
+            <br>
+
+            <app-carousel *ngIf="news.images.length" [images]="news.images"></app-carousel>
+            
+            <br>
+
+            <app-spacer-container>
+                <button 
+                *ngIf="admin"
+                mat-button 
+                color="primary"
+                (click)="edit()">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button 
+                *ngIf="admin"
+                mat-button 
+                color="warn"
+                (click)="delete()">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </app-spacer-container>
+            
+        </mat-card-content>
+    </mat-card>
+</div>

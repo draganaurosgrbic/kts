@@ -1,0 +1,109 @@
+<mat-drawer-container cdkFocusInitial>
+
+    <div class="root-container">
+
+        <app-close-button 
+        [fixed]="true"
+        (closed)="dialogRef.close()"
+        ></app-close-button>
+
+        <div class="image-container mat-elevation-z8">
+            <img 
+            [src]="culturalOffer.image || '../../../assets/noimage.png'">    
+        </div>
+        
+        <div class="details-container">
+            <div>
+                <app-bold-text>{{culturalOffer.name}}</app-bold-text>
+            </div>
+            <br>
+            <div>
+                <app-bold-text>Type: </app-bold-text><span>{{culturalOffer.type}}, {{culturalOffer.category}}</span>
+            </div>
+            <div>
+                <app-bold-text>Location: </app-bold-text><span>{{culturalOffer.location}}</span>
+            </div>
+            <div *ngIf="culturalOffer.description">
+                <app-bold-text>Description: </app-bold-text><span>{{culturalOffer.description}}</span>
+            </div>
+            <div>
+                <app-bold-text>Total rate: </app-bold-text><span>{{ culturalOffer.totalRate | number:'1.2-2' }}/5</span>
+            </div>
+        </div>
+    
+        <app-spacer-container>
+            <span>
+                <button 
+                *ngIf="role==='admin'" 
+                mat-button 
+                color="primary"
+                (click)="edit()">
+                    <mat-icon>edit</mat-icon>Edit
+                </button>
+                <button 
+                *ngIf="role==='admin'" 
+                mat-button 
+                color="warn"
+                (click)="delete()">
+                    <mat-icon>delete</mat-icon>Delete
+                </button>
+                <button 
+                *ngIf="role==='guest' && !toggleSubPending" 
+                mat-button 
+                [color]="culturalOffer.followed ? 'warn' : 'primary'"
+                (click)="toggleSubscription()">
+                    <mat-icon>
+                        {{culturalOffer.followed ? 'unsubscribe' : 'email'}}
+                    </mat-icon>
+                    {{culturalOffer.followed ? 'Unsubscribe' : 'Subscribe'}}
+                </button>
+                <app-spinner-button *ngIf="toggleSubPending"></app-spinner-button>
+            </span>
+            <span>
+                <button 
+                mat-button 
+                color="accent"
+                (click)="drawer.toggle()">
+                    <mat-icon>rate_review</mat-icon>
+                    Reviews & News
+                </button>
+            </span>
+        </app-spacer-container>
+    
+    </div>
+    
+    <mat-drawer class="mat-elevation-z24" #drawer position="end" mode="side">
+
+        <mat-tab-group animationDuration="0ms">
+            <mat-tab #comments [label]="'Reviews'">
+                <app-comment-list [culturalOfferId]="culturalOffer.id">
+                </app-comment-list>
+            </mat-tab>
+            <mat-tab #news [label]="'News'">
+                <app-news-list [culturalOfferId]="culturalOffer.id">
+                </app-news-list>
+            </mat-tab>
+        </mat-tab-group>
+
+        <button 
+        *ngIf="comments.isActive && role==='guest'"
+        mat-icon-button
+        class="fixed-button"
+        (click)="publishReview()">
+            <mat-icon matTooltip="new comment">insert_comment</mat-icon>
+        </button>
+
+        <button 
+        *ngIf="news.isActive && role==='admin'"
+        mat-icon-button
+        class="fixed-button"
+        (click)="publishNews()">
+            <mat-icon matTooltip="publish news">event_note</mat-icon>
+        </button>
+
+    </mat-drawer>
+
+</mat-drawer-container>
+
+    
+

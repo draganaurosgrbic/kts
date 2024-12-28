@@ -1,0 +1,21 @@
+<div class="block"></div>
+
+<app-preloader *ngIf="mapPending || fetchPending" [transparent]="true"></app-preloader>
+    
+<ya-map
+
+  [state]="{controls: []}" 
+  [zoom]="3" 
+  [center]="[mapCenter[0], mapCenter[1]]" 
+  (load)="mapPending=false; ymaps=$event">
+
+  <ya-placemark 
+  *ngFor="let culturalOffer of culturalOffers"
+  [geometry]="[culturalOffer.lat, culturalOffer.lng]"
+  [options]="placemarkOptions(culturalOffer)"
+  [properties]="placemarkProperties(culturalOffer)"
+  (yaclick)="showDetails(culturalOffer)"
+  ></ya-placemark>  
+
+</ya-map>
+  

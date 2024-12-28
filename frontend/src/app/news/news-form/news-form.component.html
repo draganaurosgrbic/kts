@@ -1,0 +1,35 @@
+<form class="root-container" cdkFocusInitial>
+
+    <h3>Publish News</h3>
+        
+    <br><br>
+
+    <div [class.disabled]="savePending">
+        
+        <mat-form-field appearance="outline">
+            <textarea 
+            [formControl]="text"
+            matInput 
+            autocomplete="off"
+            placeholder="Enter news..." 
+            rows="4"></textarea>
+            <mat-error>
+                Some text is required!
+            </mat-error>
+        </mat-form-field>    
+
+        <br>
+        
+        <app-images-input [images]="images"></app-images-input>
+        
+    </div>
+        
+    <br><br>
+    
+    <app-save-cancel
+    [pending]="savePending"
+    (cancelled)="dialogRef.close()"
+    (saved)="save()"
+    ></app-save-cancel>
+    
+</form>

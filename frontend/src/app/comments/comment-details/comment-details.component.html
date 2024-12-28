@@ -1,0 +1,41 @@
+<div class="root-container mat-elevation-z24">
+    <mat-card>
+        <mat-card-content>
+            <div class="details-container">
+                <span>
+                    <app-star-rating [starCount]="comment.rate"></app-star-rating>
+                </span>
+                <span *ngIf="comment.user !== email">{{comment.user}}</span>
+                <span *ngIf="comment.user === email">
+                    <button 
+                    mat-icon-button 
+                    color="primary"
+                    (click)="edit()">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button 
+                    mat-icon-button 
+                    color="warn"
+                    (click)="delete()">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </span>
+            </div>
+            <div class="text-container">
+                {{comment.text}}
+            </div>
+            <mat-accordion *ngIf="comment.images.length">
+                <mat-expansion-panel hideToggle #panel>
+                    <mat-expansion-panel-header>
+                      <mat-panel-title>
+                        <mat-icon color="accent">
+                            {{panel.expanded ? 'fullscreen_exit' : 'image'}}
+                        </mat-icon>
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <app-carousel [images]="comment.images"></app-carousel>
+                  </mat-expansion-panel>
+            </mat-accordion>
+        </mat-card-content>
+    </mat-card>
+</div>

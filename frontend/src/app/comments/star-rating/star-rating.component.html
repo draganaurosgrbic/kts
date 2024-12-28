@@ -1,0 +1,13 @@
+<div class="root-container">
+    <div [class.button-container]="editable">
+        <button 
+        *ngFor="let i of rateArray" 
+        mat-icon-button 
+        [disabled]="!editable"
+        (click)="starClick(i+1)">
+            <mat-icon [inline]="!editable" [class.big-icon]="editable">
+              {{starIcon(i)}}
+            </mat-icon>
+        </button>
+    </div>
+</div>

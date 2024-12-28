@@ -1,0 +1,20 @@
+<div class="mat-elevation-z8">
+    <mat-card>
+        <mat-card-content>
+            <app-spacer-container>
+                <span>
+                    {{catType.name}} 
+                </span>
+                <span>
+                    <button 
+                    mat-icon-button 
+                    color="warn"
+                    (click)="delete()">
+                        <mat-icon matTooltip="delete">delete</mat-icon>
+                    </button>
+                </span>
+            </app-spacer-container>    
+        </mat-card-content>
+    </mat-card>
+</div>
+

@@ -1,0 +1,16 @@
+<app-preloader *ngIf="fetchPending"></app-preloader>
+
+<app-paginator
+[pending]="fetchPending"
+[pagination]="pagination"
+(changedPage)="changePage($event)"
+></app-paginator>  
+
+<app-empty-container *ngIf="!fetchPending && !comments.length">
+    NO REVIEWS
+</app-empty-container>
+
+<app-comment-details 
+*ngFor="let comment of comments"
+[comment]="comment">
+</app-comment-details>    

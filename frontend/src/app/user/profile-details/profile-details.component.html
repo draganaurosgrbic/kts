@@ -1,0 +1,30 @@
+<div class="root-container">
+
+    <div class="image-container">
+        <img 
+        [src]="profile.image || '../../../assets/noprofile.png'">
+    </div>
+    
+    <div class="details-container">
+        <div>
+            <div>
+                <app-bold-text>Email: </app-bold-text><span>{{profile.email}}</span>
+            </div>
+            <div>
+                <app-bold-text>First name: </app-bold-text><span>{{profile.firstName}}</span>
+            </div>
+            <div>
+                <app-bold-text>Last name: </app-bold-text><span>{{profile.lastName}}</span>
+            </div>   
+        </div>
+
+        <div class="button-container">
+            <app-spacer-container>
+                <span></span>
+                <button mat-stroked-button (click)="edit()">Edit</button>
+            </app-spacer-container>        
+        </div>
+        
+    </div>
+
+</div>

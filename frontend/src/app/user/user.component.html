@@ -1,0 +1,32 @@
+<mat-toolbar color="primary" class="mat-elevation-z24">
+    <span>
+        <button 
+        *ngIf="profile"
+        mat-icon-button matTooltip="back" (click)="location.back()">
+            <mat-icon>arrow_back</mat-icon>
+        </button>
+    </span>
+    <span>
+        <button 
+        *ngIf="!profile"
+        mat-button (click)="toggleAuth()">
+            <mat-icon>{{login ? 'person_add' : 'login'}}</mat-icon>
+            {{login ? 'Registration' : 'Login'}}
+        </button>   
+        <button 
+        *ngIf="profile"
+        mat-icon-button matTooltip="more" [matMenuTriggerFor]="more">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #more="matMenu">
+            <button mat-menu-item (click)="signOut()">
+                <mat-icon>logout</mat-icon>
+                <span>Sign out</span>
+            </button>
+        </mat-menu>
+    </span> 
+</mat-toolbar>
+
+<div class="block"></div>
+
+<router-outlet></router-outlet>

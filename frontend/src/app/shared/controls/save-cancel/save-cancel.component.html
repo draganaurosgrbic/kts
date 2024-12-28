@@ -1,0 +1,17 @@
+<app-spacer-container>
+    <span>
+        <button 
+        *ngIf="!pending"
+        mat-raised-button 
+        color="primary" 
+        (click)="cancelled.emit()">Cancel</button>
+    </span>
+    <span>
+        <button 
+        *ngIf="!pending"
+        mat-raised-button 
+        color="accent" 
+        (click)="saved.emit()">Save</button>  
+        <app-spinner-button *ngIf="pending"></app-spinner-button>      
+    </span>
+</app-spacer-container>         

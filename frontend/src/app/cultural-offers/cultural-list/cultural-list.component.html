@@ -1,0 +1,32 @@
+<app-paginator
+[fixed]="true"
+[title]="title"
+[pending]="fetchPending"
+[pagination]="pagination"
+(changedPage)="changedPage.emit($event)"
+></app-paginator>
+
+<app-preloader *ngIf="fetchPending && !panel.expanded"></app-preloader>
+
+<div class="filter-container">
+    <div class="block"></div>
+    <mat-expansion-panel hideToggle #panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <span></span>
+                <app-center-container>
+                    <mat-icon color="accent">search</mat-icon>
+                    <span class="filter-button">Filter</span>
+                </app-center-container>
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-filter-form></app-filter-form>
+    </mat-expansion-panel>
+</div>
+
+<app-cultural-details 
+*ngFor="let culturalOffer of culturalOffers"
+[culturalOffer]="culturalOffer"
+></app-cultural-details>
+
+<div class="block"></div>

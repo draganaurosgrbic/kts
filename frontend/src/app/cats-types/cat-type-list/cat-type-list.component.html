@@ -1,0 +1,17 @@
+<app-preloader *ngIf="fetchPending"></app-preloader>
+
+<app-paginator
+[pending]="fetchPending"
+[pagination]="pagination"
+(changedPage)="changePage($event)"
+></app-paginator>
+
+<app-empty-container *ngIf="!fetchPending && !catTypes.length">
+    NO DATA
+</app-empty-container>
+
+<app-cat-type-details 
+*ngFor="let catType of catTypes"
+[catType]="catType">
+</app-cat-type-details>
+

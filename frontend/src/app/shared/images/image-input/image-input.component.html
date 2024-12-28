@@ -1,0 +1,32 @@
+<div class="root-container">
+
+    <img [src]="image || (profile ? '../../../assets/noprofile.png' : '../../../assets/noimage.png')">
+
+    <br>
+
+    <app-spacer-container>
+        
+        <button 
+        mat-stroked-button 
+        class="image-button"
+        (click)="fileInput.click()">
+            {{image ? 'Change image' : 'Add image'}}
+        </button>
+
+        <button 
+        *ngIf="image" 
+        mat-stroked-button 
+        class="image-button"
+        (click)="removed.emit()">
+            Remove image
+        </button>
+    
+        <input 
+        #fileInput 
+        type="file" 
+        accept="image/*" 
+        (change)="changeImage(fileInput.files[0])">
+
+    </app-spacer-container>
+
+</div>          
